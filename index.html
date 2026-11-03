@@ -115,7 +115,7 @@ header.top.scrolled{border-color:var(--line)}
 @keyframes bob{50%{transform:translateY(-8px)}}
 .float-card{position:absolute;background:var(--card);border-radius:14px;padding:12px 14px;box-shadow:var(--shadow);font-size:.85rem;display:flex;gap:10px;align-items:center;animation:bob 6s ease-in-out infinite}
 .float-card b{display:block;font:700 1.1rem var(--f-display)}
-.fc1{left:5%;top:7%}.fc2{right:5%;bottom:30%;animation-delay:-3s}
+.fc1{left:5%;top:7%}.fc2{right:5%;bottom:5%;animation-delay:-3s}
 .dot{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:var(--lake-soft);color:var(--lake);flex:none}
 
 /* Stats */
@@ -417,18 +417,23 @@ footer p{opacity:.8;font-size:.92rem}
           <path d="M260 300c10-40 40-70 80-80 20 30 40 50 70 80z" fill="var(--lake)" opacity=".5"/>
           <path d="M330 300c14-50 40-80 74-96 18 34 46 60 96 96z" fill="var(--lake)" opacity=".35"/>
           <rect y="298" width="500" height="202" fill="var(--water2)"/>
-          <g stroke="var(--paper)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".55">
-            <path d="M40 350h60M150 380h90M330 360h70M60 430h120M290 450h100"/>
+          <g stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" opacity=".35">
+            <path d="M40 350h60M150 380h70M380 342h70M60 440h110M330 462h90"/>
           </g>
-          <g transform="translate(300 360)">
-            <ellipse class="ripple" cx="0" cy="40" rx="90" ry="14" fill="none" stroke="var(--paper)" stroke-width="2"/>
-            <ellipse class="ripple" cx="0" cy="40" rx="90" ry="14" fill="none" stroke="var(--paper)" stroke-width="2"/>
-            <ellipse class="ripple" cx="0" cy="40" rx="90" ry="14" fill="none" stroke="var(--paper)" stroke-width="2"/>
+          <g transform="translate(290 372) scale(1.15)">
+            <ellipse class="ripple" cx="0" cy="30" rx="80" ry="11" fill="none" stroke="#FFFFFF" stroke-width="1.6"/>
+            <ellipse class="ripple" cx="0" cy="30" rx="80" ry="11" fill="none" stroke="#FFFFFF" stroke-width="1.6"/>
+            <ellipse class="ripple" cx="0" cy="30" rx="80" ry="11" fill="none" stroke="#FFFFFF" stroke-width="1.6"/>
             <g class="swan">
-              <path d="M-70 30c20 18 90 22 128 0 8-5 14-14 16-24-30 6-56 2-74-10 22-6 30-34 18-56-9-16-30-18-38-2 12 0 20 10 16 22-8 22-60 30-66 70z" fill="#FFFFFF" stroke="var(--ink)" stroke-width="2"/>
-              <path d="M-10-44c4-6 10-8 15-7l9 6-9 2z" fill="var(--marigold)"/>
-              <circle cx="-6" cy="-46" r="2.2" fill="var(--ink)"/>
-              <path d="M-36 14c16 6 40 6 56-4" fill="none" stroke="var(--ink)" stroke-width="1.6" opacity=".4"/>
+              <ellipse cx="6" cy="30" rx="70" ry="6" fill="#0B1D45" opacity=".18"/>
+              <path d="M-46 6C-26 -24 -24 -46 -40 -60" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+              <path d="M-58 14C-50 34 44 36 70 12L86 -16C72 -4 54 -2 38 -6C14 -14 -32 -12 -58 14Z" fill="#FFFFFF"/>
+              <path d="M-18 6C2 -18 44 -16 68 -4C44 8 12 12 -18 6Z" fill="#E4EAF6"/>
+              <path d="M-8 2C14 -6 38 -6 56 -2" fill="none" stroke="#C9D3EA" stroke-width="1.6" stroke-linecap="round"/>
+              <ellipse cx="-47" cy="-63" rx="10" ry="7.5" fill="#FFFFFF"/>
+              <path d="M-55 -66L-72 -60L-55 -58Z" fill="#E9A23B"/>
+              <path d="M-55 -67L-52 -60L-56 -58Z" fill="#0B1D45"/>
+              <circle cx="-47" cy="-65" r="1.8" fill="#0B1D45"/>
             </g>
           </g>
         </svg>

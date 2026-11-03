@@ -6,29 +6,29 @@
 <title>SwanSchool</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="SwanSchool, Bengaluru: CBSE school from Nursery to Grade 12. Admissions open for 2027–28.">
-<meta name="theme-color" content="#0E2B3C">
+<meta name="theme-color" content="#0B1D45">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap">
 <style>
 /* Layout: lake-and-marigold identity. Full-width bands, 1180px inner column, sections alternate paper / mist. */
 :root{
-  --ink:#0E2B3C; --ink-2:#3C5566; --paper:#F7F9FB; --mist:#E9F1F4; --card:#FFFFFF;
-  --lake:#1E7A8C; --lake-soft:#CFE7EC; --marigold:#E9A23B; --marigold-ink:#7A4A06; --line:#D5E1E6;
-  --ok:#1F8A5B; --water1:#BFE0E8; --water2:#8CC6D3;
+  --ink:#0B1D45; --ink-2:#44527A; --paper:#F6F8FC; --mist:#E7ECF7; --card:#FFFFFF;
+  --lake:#1C3F94; --lake-soft:#D6E0F5; --marigold:#E9A23B; --marigold-ink:#7A4A06; --line:#D3DBEC;
+  --ok:#1F8A5B; --water1:#C6D4F0; --water2:#5D7BC4;
   --f-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
   --f-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --f-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --r:14px; --shadow:0 10px 30px -14px rgba(14,43,60,.28);
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --ink:#E6F0F3; --ink-2:#A9BEC8; --paper:#0B1C26; --mist:#10252F; --card:#132D39;
-  --lake:#5CC3D4; --lake-soft:#173C48; --marigold:#F2B457; --marigold-ink:#2A1A02; --line:#21404D;
-  --ok:#4CC28C; --water1:#123441; --water2:#1A4A59; --shadow:0 10px 30px -14px rgba(0,0,0,.6); color-scheme:dark}}
+  --ink:#E8EDF9; --ink-2:#A8B4D3; --paper:#071331; --mist:#0C1C42; --card:#10234F;
+  --lake:#8FAEF5; --lake-soft:#1A3270; --marigold:#F2B457; --marigold-ink:#2A1A02; --line:#21366B;
+  --ok:#4CC28C; --water1:#0E2259; --water2:#1B3A86; --shadow:0 10px 30px -14px rgba(0,0,0,.6); color-scheme:dark}}
 :root[data-theme="dark"]{
-  --ink:#E6F0F3; --ink-2:#A9BEC8; --paper:#0B1C26; --mist:#10252F; --card:#132D39;
-  --lake:#5CC3D4; --lake-soft:#173C48; --marigold:#F2B457; --marigold-ink:#2A1A02; --line:#21404D;
-  --ok:#4CC28C; --water1:#123441; --water2:#1A4A59; --shadow:0 10px 30px -14px rgba(0,0,0,.6); color-scheme:dark}
+  --ink:#E8EDF9; --ink-2:#A8B4D3; --paper:#071331; --mist:#0C1C42; --card:#10234F;
+  --lake:#8FAEF5; --lake-soft:#1A3270; --marigold:#F2B457; --marigold-ink:#2A1A02; --line:#21366B;
+  --ok:#4CC28C; --water1:#0E2259; --water2:#1B3A86; --shadow:0 10px 30px -14px rgba(0,0,0,.6); color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -152,7 +152,7 @@ header.top.scrolled{border-color:var(--line)}
 .panel .meta{font:600 .8rem var(--f-mono);color:var(--lake);letter-spacing:.08em;margin-bottom:12px;text-transform:uppercase}
 .ticks{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
 .ticks li{display:flex;gap:10px}
-.ticks li::before{content:"";flex:none;width:20px;height:20px;margin-top:3px;border-radius:50%;background:var(--lake-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='%231E7A8C' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+.ticks li::before{content:"";flex:none;width:20px;height:20px;margin-top:3px;border-radius:50%;background:var(--lake-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='%231C3F94' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
 .subjects{display:flex;flex-wrap:wrap;gap:8px;align-content:start}
 .subjects .chip{background:var(--mist)}
 .mini{font:600 .76rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px;display:block}

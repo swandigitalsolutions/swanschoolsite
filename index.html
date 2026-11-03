@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SwanSchool</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="SwanSchool, Bengaluru: CBSE school from Nursery to Grade 12. Admissions open for 2027–28.">
+<meta name="theme-color" content="#0E2B3C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap">
+<style>
+/* Layout: lake-and-marigold identity. Full-width bands, 1180px inner column, sections alternate paper / mist. */
+:root{
+  --ink:#0E2B3C; --ink-2:#3C5566; --paper:#F7F9FB; --mist:#E9F1F4; --card:#FFFFFF;
+  --lake:#1E7A8C; --lake-soft:#CFE7EC; --marigold:#E9A23B; --marigold-ink:#7A4A06; --line:#D5E1E6;
+  --ok:#1F8A5B; --water1:#BFE0E8; --water2:#8CC6D3;
+  --f-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --f-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --r:14px; --shadow:0 10px 30px -14px rgba(14,43,60,.28);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --ink:#E6F0F3; --ink-2:#A9BEC8; --paper:#0B1C26; --mist:#10252F; --card:#132D39;
+  --lake:#5CC3D4; --lake-soft:#173C48; --marigold:#F2B457; --marigold-ink:#2A1A02; --line:#21404D;
+  --ok:#4CC28C; --water1:#123441; --water2:#1A4A59; --shadow:0 10px 30px -14px rgba(0,0,0,.6); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --ink:#E6F0F3; --ink-2:#A9BEC8; --paper:#0B1C26; --mist:#10252F; --card:#132D39;
+  --lake:#5CC3D4; --lake-soft:#173C48; --marigold:#F2B457; --marigold-ink:#2A1A02; --line:#21404D;
+  --ok:#4CC28C; --water1:#123441; --water2:#1A4A59; --shadow:0 10px 30px -14px rgba(0,0,0,.6); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800}
+h3{font-size:1.2rem;font-weight:700}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--marigold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:clamp(56px,8vw,96px)}
+.band{background:var(--mist)}
+.eyebrow{font:600 .78rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--lake);display:inline-flex;gap:8px;align-items:center}
+.eyebrow::before{content:"";width:18px;height:2px;background:var(--marigold);border-radius:2px}
+.lede{color:var(--ink-2);font-size:1.08rem;max-width:62ch}
+.head{display:grid;gap:14px;margin-bottom:40px}
+.head.split{grid-template-columns:1fr auto;align-items:end}
+@media(max-width:760px){.head.split{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:650;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .2s,background .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--marigold);color:#2A1A02;box-shadow:0 8px 22px -10px var(--marigold)}
+.btn-ghost{border-color:var(--ink);background:transparent}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--lake-soft);color:var(--ink);font-size:.85rem;font-weight:600}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* Reveal: visible at rest; only movement is animated */
+.rv{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.js .rv.pre{transform:translateY(26px)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Ticker */
+.ticker{background:var(--ink);color:var(--paper);font-size:.88rem;overflow:hidden;white-space:nowrap}
+.ticker .row{display:inline-flex;gap:48px;padding-block:9px;animation:tick 38s linear infinite;padding-left:100%}
+.ticker:hover .row{animation-play-state:paused}
+.ticker b{color:var(--marigold)}
+@keyframes tick{to{transform:translateX(-100%)}}
+
+/* Header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.top.scrolled{border-color:var(--line)}
+.nav{display:flex;align-items:center;gap:20px;height:70px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 1.35rem var(--f-display)}
+.brand small{display:block;font:500 .68rem var(--f-mono);letter-spacing:.12em;color:var(--ink-2);text-transform:uppercase}
+.links{display:flex;gap:4px;margin-left:auto}
+.links a{text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600;font-size:.94rem;color:var(--ink-2)}
+.links a:hover,.links a.on{color:var(--ink);background:var(--mist)}
+.nav .act{display:flex;gap:8px;align-items:center}
+.icon-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;cursor:pointer}
+.menu-btn{display:none}
+@media(max-width:1020px){
+  .links{position:fixed;inset:calc(70px + env(safe-area-inset-top,0px)) 0 auto;flex-direction:column;background:var(--paper);padding:12px max(16px,env(safe-area-inset-right,0px)) 20px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line);transform:translateY(-120%);transition:transform .35s;margin:0;z-index:-1}
+  .links.open{transform:none}
+  .links a{padding:12px}
+  .menu-btn{display:grid}
+  .nav .act .btn-ghost{display:none}
+}
+@media(max-width:420px){.nav .act .btn-primary{padding:10px 14px;font-size:.9rem}}
+
+/* Hero */
+.hero{padding-block:clamp(40px,6vw,72px) 0;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(2.6rem,6.6vw,5.2rem);font-weight:800;letter-spacing:-.025em}
+.hero h1 .w{display:inline-block;animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero h1 em{font-style:normal;color:var(--lake);position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.14em;background:var(--marigold);border-radius:4px;z-index:-1;transform-origin:left;animation:grow 1s .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{transform:translateY(.5em)}to{transform:none}}
+@keyframes grow{from{transform:scaleX(0)}}
+.hero .lede{margin-top:22px;font-size:1.15rem}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.scene{position:relative;aspect-ratio:1/1;max-width:100%;border-radius:28px;overflow:hidden;background:linear-gradient(180deg,var(--mist),var(--water1));box-shadow:var(--shadow)}
+.scene svg{position:absolute;inset:0;width:100%;height:100%}
+.swan{animation:glide 9s ease-in-out infinite}
+@keyframes glide{0%,100%{transform:translate(0,0)}50%{transform:translate(-26px,6px)}}
+.ripple{transform-box:fill-box;transform-origin:center;animation:rip 4.5s ease-out infinite}
+.ripple:nth-of-type(2){animation-delay:1.5s}.ripple:nth-of-type(3){animation-delay:3s}
+@keyframes rip{from{transform:scale(.4);opacity:.9}to{transform:scale(1.6);opacity:0}}
+.sun{animation:bob 7s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.float-card{position:absolute;background:var(--card);border-radius:14px;padding:12px 14px;box-shadow:var(--shadow);font-size:.85rem;display:flex;gap:10px;align-items:center;animation:bob 6s ease-in-out infinite}
+.float-card b{display:block;font:700 1.1rem var(--f-display)}
+.fc1{left:5%;top:7%}.fc2{right:5%;bottom:30%;animation-delay:-3s}
+.dot{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:var(--lake-soft);color:var(--lake);flex:none}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:clamp(40px,6vw,64px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{padding:26px 20px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0}
+.stat b{display:block;font:800 clamp(2rem,4vw,2.8rem)/1 var(--f-display);color:var(--ink)}
+.stat span{color:var(--ink-2);font-size:.92rem}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(3){border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* About */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media(max-width:900px){.about{grid-template-columns:1fr}}
+.principal{background:var(--card);border-radius:22px;padding:30px;box-shadow:var(--shadow);position:relative}
+.principal blockquote{margin:0;font:500 1.25rem/1.45 var(--f-display)}
+.principal .who{display:flex;gap:14px;align-items:center;margin-top:22px}
+.avatar{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font:800 1.1rem var(--f-display);background:var(--marigold);color:#2A1A02;flex:none}
+.values{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px}
+.values div{padding-top:14px;border-top:2px solid var(--line)}
+.values h4{font-size:1.05rem;margin-bottom:4px}
+.values p{color:var(--ink-2);font-size:.94rem}
+@media(max-width:480px){.values{grid-template-columns:1fr}}
+
+/* Tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;background:var(--card);padding:6px;border-radius:999px;width:fit-content;max-width:100%;border:1px solid var(--line)}
+.tab{border:0;background:transparent;padding:10px 18px;border-radius:999px;font-weight:650;cursor:pointer;color:var(--ink-2)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.panel{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;margin-top:28px;background:var(--card);border-radius:22px;padding:clamp(22px,4vw,40px);border:1px solid var(--line)}
+.panel[hidden]{display:none!important}
+.panel.in{animation:fade .45s ease}
+@keyframes fade{from{transform:translateY(10px);opacity:.3}}
+@media(max-width:820px){.panel{grid-template-columns:1fr}}
+.panel h3{font-size:1.6rem;margin-bottom:10px}
+.panel .meta{font:600 .8rem var(--f-mono);color:var(--lake);letter-spacing:.08em;margin-bottom:12px;text-transform:uppercase}
+.ticks{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+.ticks li{display:flex;gap:10px}
+.ticks li::before{content:"";flex:none;width:20px;height:20px;margin-top:3px;border-radius:50%;background:var(--lake-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='%231E7A8C' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+.subjects{display:flex;flex-wrap:wrap;gap:8px;align-content:start}
+.subjects .chip{background:var(--mist)}
+.mini{font:600 .76rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px;display:block}
+
+/* Facilities */
+.fac{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:980px){.fac{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.fac{grid-template-columns:1fr}}
+.fac article{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;transition:transform .3s,box-shadow .3s,border-color .3s}
+.fac article:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--lake)}
+.fac svg{width:38px;height:38px;color:var(--lake);margin-bottom:14px}
+.fac p{color:var(--ink-2);font-size:.93rem;margin-top:6px}
+
+/* Day timeline */
+.day{display:grid;grid-template-columns:repeat(6,1fr);gap:0;position:relative}
+.day::before{content:"";position:absolute;left:0;right:0;top:15px;height:2px;background:var(--line)}
+.day .fill{position:absolute;left:0;top:15px;height:2px;background:var(--marigold);width:0;transition:width 2.2s cubic-bezier(.2,.7,.2,1)}
+.day.go .fill{width:100%}
+.slot{position:relative;padding-right:14px}
+.slot i{display:block;width:32px;height:32px;border-radius:50%;background:var(--paper);border:2px solid var(--lake);position:relative;z-index:1}
+.band .slot i{background:var(--mist)}
+.slot time{display:block;font:700 .85rem var(--f-mono);margin:14px 0 4px;color:var(--lake)}
+.slot h4{font-size:1rem}
+.slot p{color:var(--ink-2);font-size:.88rem;margin-top:4px}
+@media(max-width:860px){.day{grid-template-columns:1fr;gap:22px;padding-left:46px}.day::before,.day .fill{left:15px;top:0;bottom:0;width:2px;height:auto;right:auto}.day .fill{height:0;transition:height 2.2s}.day.go .fill{width:2px;height:100%}.slot i{position:absolute;left:-46px;top:0}.slot time{margin-top:4px}}
+
+/* Results chart */
+.results{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:860px){.results{grid-template-columns:1fr}}
+.chart-card,.toppers{background:var(--card);border-radius:22px;padding:28px;border:1px solid var(--line)}
+.chart-card h3{margin-bottom:4px}
+.chart-card .sub{color:var(--ink-2);font-size:.9rem;margin-bottom:18px}
+.bars{display:grid;gap:12px}
+.bar{display:grid;grid-template-columns:62px 1fr 56px;align-items:center;gap:12px;font-size:.9rem}
+.bar .track{height:14px;background:var(--mist);border-radius:8px;overflow:hidden;position:relative}
+.bar .track::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--v);background:var(--lake);border-radius:8px;transform-origin:left;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.bar.hl .track::after{background:var(--marigold)}
+.js .bars.pre .track::after{transform:scaleX(.02)}
+.bar b{text-align:right}
+.axis{display:grid;grid-template-columns:62px 1fr 56px;gap:12px;font:500 .72rem var(--f-mono);color:var(--ink-2);margin-top:4px}
+.axis div{display:flex;justify-content:space-between}
+.toppers ol{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px}
+.toppers li{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.toppers li:last-child{border:0;padding:0}
+.toppers .pct{font:800 1.2rem var(--f-display);color:var(--lake)}
+.toppers small{color:var(--ink-2);display:block}
+
+/* News + events */
+.ne{display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
+@media(max-width:900px){.ne{grid-template-columns:1fr}}
+.events{display:grid;gap:12px}
+.ev{display:grid;grid-template-columns:70px 1fr auto;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 18px;transition:border-color .2s,transform .2s}
+.ev:hover{border-color:var(--lake);transform:translateX(4px)}
+.date{text-align:center;border-right:1px solid var(--line);padding-right:12px}
+.date b{display:block;font:800 1.7rem/1 var(--f-display)}
+.date span{font:600 .72rem var(--f-mono);letter-spacing:.1em;color:var(--lake);text-transform:uppercase}
+.ev p{color:var(--ink-2);font-size:.9rem}
+.tag{font:600 .72rem var(--f-mono);padding:4px 9px;border-radius:6px;background:var(--lake-soft);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.tag.exam{background:color-mix(in srgb,var(--marigold) 30%,transparent)}
+@media(max-width:520px){.ev{grid-template-columns:60px 1fr}.ev .tag{grid-column:2;justify-self:start}}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.filters button{border:1px solid var(--line);background:var(--card);padding:7px 14px;border-radius:999px;cursor:pointer;font-weight:600;font-size:.88rem}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.notice{background:var(--ink);color:var(--paper);border-radius:22px;padding:26px;display:flex;flex-direction:column}
+.notice h3{color:var(--paper)}
+.notice ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:0}
+.notice li{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:.94rem}
+:root[data-theme="dark"] .notice,.notice{--nb:rgba(255,255,255,.12)}
+.notice li small{display:block;font:600 .72rem var(--f-mono);color:var(--marigold);letter-spacing:.08em;margin-bottom:3px}
+.notice .new{display:inline-block;margin-left:6px;font:700 .65rem var(--f-mono);background:var(--marigold);color:#2A1A02;padding:2px 6px;border-radius:4px;vertical-align:middle}
+
+/* Gallery */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;gap:12px}
+.gal button{border:0;padding:0;border-radius:16px;overflow:hidden;cursor:pointer;position:relative;background:var(--g);transition:transform .35s}
+.gal button:hover{transform:scale(.98)}
+.gal button span{position:absolute;left:12px;bottom:12px;background:var(--card);padding:5px 10px;border-radius:8px;font-size:.82rem;font-weight:650;color:var(--ink)}
+.gal button svg{position:absolute;inset:0;width:100%;height:100%;opacity:.95}
+.gal .tall{grid-row:span 2}.gal .wide{grid-column:span 2}
+@media(max-width:760px){.gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px}}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(6,18,26,.82);display:grid;place-items:center;padding:24px}
+.lb .box{width:min(820px,100%);aspect-ratio:16/10;max-width:100%;border-radius:20px;position:relative;overflow:hidden;animation:pop .35s ease}
+.lb .box svg{width:100%;height:100%}
+.lb .cap{position:absolute;left:0;right:0;bottom:0;padding:18px 20px;background:linear-gradient(transparent,rgba(0,0,0,.65));color:#fff;font-weight:650}
+.lb .x{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:calc(16px + env(safe-area-inset-right,0px));width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:#0E2B3C;font-size:1.3rem;cursor:pointer}
+@keyframes pop{from{transform:scale(.92)}}
+
+/* Testimonials */
+.quotes{position:relative;overflow:hidden}
+.qtrack{display:flex;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.q{flex:0 0 100%;padding:4px}
+.q figure{margin:0;background:var(--card);border-radius:22px;padding:clamp(24px,4vw,44px);border:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:24px}
+.q blockquote{margin:0;font:500 clamp(1.15rem,2.4vw,1.5rem)/1.45 var(--f-display)}
+.q figcaption{margin-top:18px;color:var(--ink-2);font-size:.94rem}
+.q figcaption b{color:var(--ink)}
+.q .mark{font:800 5rem/0.8 var(--f-display);color:var(--marigold)}
+@media(max-width:600px){.q figure{grid-template-columns:1fr;gap:4px}}
+.qnav{display:flex;gap:8px;align-items:center;margin-top:18px}
+.qdots{display:flex;gap:6px;margin-left:auto}
+.qdots button{width:10px;height:10px;border-radius:50%;border:0;background:var(--line);cursor:pointer;padding:0;transition:width .3s}
+.qdots button[aria-current="true"]{background:var(--lake);width:28px;border-radius:6px}
+
+/* Admissions */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s}
+@media(max-width:860px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.steps{grid-template-columns:1fr}}
+.steps li{list-style:none;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;counter-increment:s}
+.steps li::before{content:"Step " counter(s);display:block;font:700 .75rem var(--f-mono);color:var(--lake);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.steps p{color:var(--ink-2);font-size:.92rem;margin-top:6px}
+.adm{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px}
+@media(max-width:900px){.adm{grid-template-columns:1fr}}
+.table-wrap{overflow-x:auto;background:var(--card);border-radius:22px;border:1px solid var(--line);padding:8px}
+table{width:100%;border-collapse:collapse;font-size:.93rem;min-width:420px}
+th,td{padding:13px 14px;text-align:left;border-bottom:1px solid var(--line)}
+th{font:600 .75rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:650}
+th.n{text-align:right}
+tr:last-child td{border-bottom:0}
+.fee-note{color:var(--ink-2);font-size:.84rem;padding:10px 14px 6px}
+form.enq{background:var(--card);border-radius:22px;padding:clamp(22px,4vw,32px);border:2px solid var(--lake);display:grid;gap:14px;grid-template-columns:1fr 1fr;position:relative}
+form.enq h3,form.enq .full{grid-column:1/-1}
+@media(max-width:520px){form.enq{grid-template-columns:1fr}}
+label{display:grid;gap:6px;font-weight:600;font-size:.88rem;min-width:0}
+input,select,textarea{font:inherit;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);width:100%;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--lake);box-shadow:0 0 0 4px var(--lake-soft)}
+input[aria-invalid="true"],select[aria-invalid="true"]{border-color:#C0392B}
+.err{color:#C0392B;font-size:.8rem;font-weight:500;min-height:1em}
+.done{grid-column:1/-1;background:color-mix(in srgb,var(--ok) 14%,transparent);border-radius:12px;padding:16px;font-weight:600;color:var(--ink)}
+.done b{color:var(--ok)}
+
+/* Portal */
+.portal{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center}
+@media(max-width:900px){.portal{grid-template-columns:1fr}}
+.phone{background:var(--ink);border-radius:30px;padding:14px;max-width:420px;width:100%;margin-inline:auto;box-shadow:var(--shadow)}
+.screen{background:var(--paper);border-radius:20px;padding:18px;display:grid;gap:12px}
+.screen .hello{display:flex;justify-content:space-between;align-items:center}
+.screen .hello small{color:var(--ink-2)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--line)}
+.tile small{color:var(--ink-2);font-size:.78rem;display:block}
+.tile b{font:800 1.4rem var(--f-display)}
+.ring{--p:94;width:56px;height:56px;border-radius:50%;background:conic-gradient(var(--ok) calc(var(--p)*1%),var(--mist) 0);display:grid;place-items:center;float:right}
+.ring::after{content:"";width:42px;height:42px;border-radius:50%;background:var(--card)}
+.hw{background:var(--card);border-radius:14px;padding:12px 14px;border:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;font-size:.88rem}
+.pill{font:600 .7rem var(--f-mono);padding:3px 8px;border-radius:6px;background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ink);white-space:nowrap;align-self:center}
+.pill.due{background:color-mix(in srgb,var(--marigold) 30%,transparent)}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+.feat div{display:flex;gap:12px}
+.feat p{color:var(--ink-2);font-size:.9rem}
+@media(max-width:480px){.feat{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq{display:grid;gap:10px;max-width:860px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:0 20px;transition:border-color .2s}
+.faq details[open]{border-color:var(--lake)}
+.faq summary{cursor:pointer;list-style:none;padding:18px 0;font-weight:650;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:500 1.4rem/1 var(--f-display);color:var(--lake);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:18px;color:var(--ink-2)}
+
+/* Contact + footer */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:860px){.contact{grid-template-columns:1fr}}
+.ccard{background:var(--card);border-radius:22px;padding:28px;border:1px solid var(--line);display:grid;gap:18px}
+.crow{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center}
+.crow small{color:var(--ink-2);display:block;font-size:.8rem}
+.copy{border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:6px 10px;font-size:.8rem;cursor:pointer;font-weight:600}
+.map{border-radius:22px;overflow:hidden;min-height:300px;position:relative;background:var(--water1)}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.map a{position:absolute;left:16px;bottom:16px}
+footer{background:var(--ink);color:var(--paper);padding-block:56px 32px}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+@media(max-width:860px){footer .cols{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){footer .cols{grid-template-columns:1fr}}
+footer h4{font-size:.95rem;margin-bottom:12px;color:var(--marigold)}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+footer a{text-decoration:none;opacity:.82}
+footer a:hover{opacity:1}
+footer p{opacity:.8;font-size:.92rem}
+.legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:.82rem;opacity:.7}
+.totop{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:48px;height:48px;border-radius:50%;border:0;background:var(--marigold);color:#2A1A02;box-shadow:var(--shadow);cursor:pointer;transform:translateY(90px);transition:transform .35s}
+.totop.show{transform:none}
+.progress{position:fixed;left:0;top:env(safe-area-inset-top,0px);height:3px;background:var(--marigold);z-index:70;width:100%;transform-origin:left;transform:scaleX(0)}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<div class="ticker" role="region" aria-label="Announcements">
+  <div class="row">
+    <span><b>Admissions open</b> for 2027–28 · Nursery to Grade 11</span>
+    <span><b>Campus tours</b> every Saturday, 10:00 AM</span>
+    <span><b>Grade 10 board results 2026:</b> 100% pass · school average 89.4%</span>
+    <span><b>Annual Day</b> “Swan Song” on 12 December</span>
+    <span><b>Early-bird</b> registration closes 15 December</span>
+  </div>
+</div>
+
+<header class="top" id="top">
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="SwanSchool home">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="var(--ink)"/><path d="M12 27c4 2 12 2 16-1-3 0-5-1-6-3 3-1 4-5 2-8-1-2-4-2-5 0 2 0 3 2 2 4-2 3-7 3-9 8z" fill="var(--paper)"/><circle cx="21.4" cy="16.3" r=".9" fill="var(--marigold)"/></svg>
+      <span>SwanSchool<small>CBSE · Est. 1998</small></span>
+    </a>
+    <nav class="links" id="links" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#academics">Academics</a>
+      <a href="#campus">Campus</a>
+      <a href="#results">Results</a>
+      <a href="#news">News</a>
+      <a href="#admissions">Admissions</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="act">
+      <button class="icon-btn" id="theme" aria-label="Switch colour theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a class="btn btn-ghost" href="#portal">Parent portal</a>
+      <a class="btn btn-primary" href="#apply">Apply now</a>
+      <button class="icon-btn menu-btn" id="menu" aria-label="Open menu" aria-expanded="false" aria-controls="links">
+        <svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Nursery to Grade 12 · Bengaluru</span>
+        <h1 style="margin-top:18px">
+          <span class="w">Where</span> <span class="w" style="animation-delay:.08s">every</span> <span class="w" style="animation-delay:.16s">child</span> <span class="w" style="animation-delay:.24s">learns</span> <span class="w" style="animation-delay:.32s">to</span> <em class="w" style="animation-delay:.4s">glide.</em>
+        </h1>
+        <p class="lede">Calm on the surface, hard at work underneath. SwanSchool pairs a strong CBSE core with labs, sport and the arts, in classes small enough that every teacher knows every child by name.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#apply">Start your application →</a>
+          <a class="btn btn-ghost" href="#contact">Book a campus tour</a>
+        </div>
+        <div class="facts">
+          <span class="chip">CBSE Affiliation 830XXXX</span>
+          <span class="chip">1 teacher : 18 students</span>
+          <span class="chip">GPS school buses</span>
+        </div>
+      </div>
+      <div class="scene" aria-label="Illustration of a swan on a lake beside the school">
+        <svg viewBox="0 0 500 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <circle class="sun" cx="380" cy="110" r="46" fill="var(--marigold)"/>
+          <g fill="var(--lake)" opacity=".85">
+            <rect x="60" y="190" width="150" height="110" rx="6"/>
+            <path d="M50 195 L135 140 L220 195Z"/>
+            <rect x="120" y="120" width="30" height="40"/>
+            <path d="M115 122 L135 98 L155 122Z"/>
+          </g>
+          <g fill="var(--paper)">
+            <rect x="80" y="215" width="22" height="26" rx="3"/><rect x="124" y="215" width="22" height="26" rx="3"/><rect x="168" y="215" width="22" height="26" rx="3"/>
+            <rect x="122" y="258" width="26" height="42" rx="13"/>
+            <circle cx="135" cy="168" r="9"/>
+          </g>
+          <path d="M260 300c10-40 40-70 80-80 20 30 40 50 70 80z" fill="var(--lake)" opacity=".5"/>
+          <path d="M330 300c14-50 40-80 74-96 18 34 46 60 96 96z" fill="var(--lake)" opacity=".35"/>
+          <rect y="298" width="500" height="202" fill="var(--water2)"/>
+          <g stroke="var(--paper)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".55">
+            <path d="M40 350h60M150 380h90M330 360h70M60 430h120M290 450h100"/>
+          </g>
+          <g transform="translate(300 360)">
+            <ellipse class="ripple" cx="0" cy="40" rx="90" ry="14" fill="none" stroke="var(--paper)" stroke-width="2"/>
+            <ellipse class="ripple" cx="0" cy="40" rx="90" ry="14" fill="none" stroke="var(--paper)" stroke-width="2"/>
+            <ellipse class="ripple" cx="0" cy="40" rx="90" ry="14" fill="none" stroke="var(--paper)" stroke-width="2"/>
+            <g class="swan">
+              <path d="M-70 30c20 18 90 22 128 0 8-5 14-14 16-24-30 6-56 2-74-10 22-6 30-34 18-56-9-16-30-18-38-2 12 0 20 10 16 22-8 22-60 30-66 70z" fill="#FFFFFF" stroke="var(--ink)" stroke-width="2"/>
+              <path d="M-10-44c4-6 10-8 15-7l9 6-9 2z" fill="var(--marigold)"/>
+              <circle cx="-6" cy="-46" r="2.2" fill="var(--ink)"/>
+              <path d="M-36 14c16 6 40 6 56-4" fill="none" stroke="var(--ink)" stroke-width="1.6" opacity=".4"/>
+            </g>
+          </g>
+        </svg>
+        <div class="float-card fc1"><span class="dot">★</span><div><b>27 years</b>of nurturing learners</div></div>
+        <div class="float-card fc2"><span class="dot">✓</span><div><b>100% pass</b>Grade 10 &amp; 12, 2026</div></div>
+      </div>
+    </div>
+
+    <div class="stats" id="stats">
+      <div class="stat"><b class="tnum" data-count="2450">0</b><span>Students enrolled</span></div>
+      <div class="stat"><b class="tnum" data-count="168">0</b><span>Qualified teachers</span></div>
+      <div class="stat"><b class="tnum" data-count="14" data-suffix=" acres">0</b><span>Green campus</span></div>
+      <div class="stat"><b class="tnum" data-count="42">0</b><span>Clubs &amp; activities</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="band">
+  <div class="wrap about">
+    <div class="rv">
+      <span class="eyebrow">About SwanSchool</span>
+      <h2 style="margin:14px 0 18px">A school that feels like a second home.</h2>
+      <p class="lede">Founded in 1998 by a group of teachers and parents, SwanSchool has grown from 60 students in a rented bungalow to a 14-acre campus. What has not changed is the idea we started with: children learn best when they feel safe, known and challenged.</p>
+      <div class="values">
+        <div><h4>Curiosity</h4><p>Inquiry-led lessons where questions matter as much as answers.</p></div>
+        <div><h4>Character</h4><p>Weekly values circles, service projects and student leadership.</p></div>
+        <div><h4>Craft</h4><p>Practice in labs, studios and on the field, not only in notebooks.</p></div>
+        <div><h4>Care</h4><p>A counsellor for every 300 students and a mentor for every child.</p></div>
+      </div>
+    </div>
+    <figure class="principal rv" style="margin:0">
+      <span class="eyebrow">From the Principal</span>
+      <blockquote style="margin-top:16px">“A swan looks effortless because of the steady work you don’t see. That is our promise to parents: quiet, consistent effort every day, so your child can move through the world with confidence.”</blockquote>
+      <div class="who">
+        <span class="avatar">AR</span>
+        <div><b>Dr. Anitha Rao</b><br><small style="color:var(--ink-2)">Principal · M.Ed., Ph.D. (Education) · 24 years in teaching</small></div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ACADEMICS -->
+<section id="academics">
+  <div class="wrap">
+    <div class="head split rv">
+      <div><span class="eyebrow">Academics</span><h2 style="margin-top:14px">One path, four stages.</h2></div>
+      <p class="lede">Our curriculum follows CBSE and NEP 2020 stages, with extra time for reading, coding and the arts at every level.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="School stages">
+      <button class="tab" role="tab" id="t-0" aria-selected="true" aria-controls="p-0">Foundational</button>
+      <button class="tab" role="tab" id="t-1" aria-selected="false" aria-controls="p-1">Preparatory</button>
+      <button class="tab" role="tab" id="t-2" aria-selected="false" aria-controls="p-2">Middle</button>
+      <button class="tab" role="tab" id="t-3" aria-selected="false" aria-controls="p-3">Secondary</button>
+    </div>
+    <div class="panel" role="tabpanel" id="p-0" aria-labelledby="t-0">
+      <div><p class="meta">Nursery · LKG · UKG · Grades 1–2 · Ages 3–8</p><h3>Learning through play</h3><p class="lede">Play-based, activity-rich classrooms where children build language, number sense and friendships at their own pace.</p>
+        <ul class="ticks"><li>Two teachers in every Nursery and KG class</li><li>Phonics, storytelling and a weekly library hour</li><li>Sand pit, splash pool and sensory garden</li><li>No homework until Grade 1; no exams until Grade 3</li></ul></div>
+      <div><span class="mini">What they explore</span><div class="subjects"><span class="chip">English</span><span class="chip">Kannada</span><span class="chip">Numeracy</span><span class="chip">Environmental awareness</span><span class="chip">Music &amp; movement</span><span class="chip">Art</span><span class="chip">Yoga</span></div></div>
+    </div>
+    <div class="panel" role="tabpanel" id="p-1" aria-labelledby="t-1" hidden>
+      <div><p class="meta">Grades 3–5 · Ages 8–11</p><h3>Building strong foundations</h3><p class="lede">Children move from play to structured learning, with hands-on projects that connect subjects to real life.</p>
+        <ul class="ticks"><li>Three languages: English, Hindi and Kannada</li><li>Abacus and mental maths from Grade 3</li><li>Block coding and robotics kits</li><li>Termly project fairs open to parents</li></ul></div>
+      <div><span class="mini">Subjects</span><div class="subjects"><span class="chip">English</span><span class="chip">Hindi</span><span class="chip">Kannada</span><span class="chip">Mathematics</span><span class="chip">EVS</span><span class="chip">Computer science</span><span class="chip">Art &amp; craft</span><span class="chip">Physical education</span></div></div>
+    </div>
+    <div class="panel" role="tabpanel" id="p-2" aria-labelledby="t-2" hidden>
+      <div><p class="meta">Grades 6–8 · Ages 11–14</p><h3>Thinking like scientists and writers</h3><p class="lede">Subject specialists, lab work and debate help students reason, test ideas and explain them clearly.</p>
+        <ul class="ticks"><li>Weekly practical periods in science labs</li><li>Python, AI basics and design thinking</li><li>Model UN, debate and the school newspaper</li><li>Olympiad preparation for maths and science</li></ul></div>
+      <div><span class="mini">Subjects</span><div class="subjects"><span class="chip">English</span><span class="chip">Hindi / Sanskrit</span><span class="chip">Kannada</span><span class="chip">Mathematics</span><span class="chip">Science</span><span class="chip">Social science</span><span class="chip">Computer science</span><span class="chip">Vocational skills</span></div></div>
+    </div>
+    <div class="panel" role="tabpanel" id="p-3" aria-labelledby="t-3" hidden>
+      <div><p class="meta">Grades 9–12 · Ages 14–18</p><h3>Ready for boards and beyond</h3><p class="lede">Focused board preparation with career guidance, so students choose streams and colleges with clarity.</p>
+        <ul class="ticks"><li>Science (PCM / PCB), Commerce and Humanities streams</li><li>Integrated coaching for JEE, NEET and CUET</li><li>Psychometric testing and one-to-one career counselling</li><li>College application support for India and abroad</li></ul></div>
+      <div><span class="mini">Grade 11–12 electives</span><div class="subjects"><span class="chip">Physics</span><span class="chip">Chemistry</span><span class="chip">Biology</span><span class="chip">Mathematics</span><span class="chip">Accountancy</span><span class="chip">Business studies</span><span class="chip">Economics</span><span class="chip">Psychology</span><span class="chip">Political science</span><span class="chip">Computer science</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPUS -->
+<section id="campus" class="band">
+  <div class="wrap">
+    <div class="head rv"><span class="eyebrow">Campus &amp; facilities</span><h2>Everything a growing mind needs, on 14 acres.</h2></div>
+    <div class="fac">
+      <article class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7 15h10"/></svg><h3>Science labs</h3><p>Separate physics, chemistry and biology labs, plus an ATL tinkering lab.</p></article>
+      <article class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h6M8 11h6"/></svg><h3>Library</h3><p>18,000 books, e-library access and a reading café for juniors.</p></article>
+      <article class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><h3>Smart classrooms</h3><p>Interactive panels in every room and a 1:1 device lab from Grade 6.</p></article>
+      <article class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><h3>Sports complex</h3><p>Football turf, cricket nets, 25 m pool, skating rink and indoor courts.</p></article>
+      <article class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><h3>Arts block</h3><p>Music rooms, dance studio, pottery wheel and a 600-seat auditorium.</p></article>
+      <article class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="6" width="18" height="11" rx="2"/><path d="M3 11h18M7 17v2M17 17v2"/><circle cx="12" cy="3.5" r="1.5"/></svg><h3>Safe transport</h3><p>42 GPS-tracked buses with female attendants and live parent alerts.</p></article>
+      <article class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><h3>Safety &amp; security</h3><p>CCTV coverage, RFID gate entry and fire drills every term.</p></article>
+      <article class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-8-4.5-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 6.5-8 11-8 11z"/><path d="M12 9v5M9.5 11.5h5"/></svg><h3>Health centre</h3><p>Full-time nurse, visiting paediatrician and a nutritionist-planned menu.</p></article>
+    </div>
+
+    <div style="margin-top:64px" class="rv">
+      <div class="head"><span class="eyebrow">A day at SwanSchool</span><h3 style="font-size:1.6rem">What a Grade 5 Tuesday looks like</h3></div>
+      <div class="day" id="day">
+        <span class="fill"></span>
+        <div class="slot"><i></i><time>8:00</time><h4>Assembly</h4><p>News, music and a thought for the day.</p></div>
+        <div class="slot"><i></i><time>8:30</time><h4>Core lessons</h4><p>Maths, English and science blocks.</p></div>
+        <div class="slot"><i></i><time>11:00</time><h4>Snack &amp; play</h4><p>Fresh fruit and free play outdoors.</p></div>
+        <div class="slot"><i></i><time>12:45</time><h4>Lunch</h4><p>Hot vegetarian meals in the dining hall.</p></div>
+        <div class="slot"><i></i><time>1:30</time><h4>Clubs</h4><p>Robotics, chess, theatre or swimming.</p></div>
+        <div class="slot"><i></i><time>3:15</time><h4>Home time</h4><p>Bus boards with live GPS alerts.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results">
+  <div class="wrap">
+    <div class="head split rv">
+      <div><span class="eyebrow">Results &amp; achievements</span><h2 style="margin-top:14px">Consistent results, year after year.</h2></div>
+      <p class="lede">CBSE Grade 10 school averages over the last five years. Every student who sat the board exam passed.</p>
+    </div>
+    <div class="results">
+      <div class="chart-card rv">
+        <h3>Grade 10 school average</h3>
+        <p class="sub">Percentage, CBSE board exams</p>
+        <div class="bars pre" id="bars">
+          <div class="bar"><span>2022</span><div class="track" style="--v:84.1%"></div><b class="tnum">84.1%</b></div>
+          <div class="bar"><span>2023</span><div class="track" style="--v:86.0%"></div><b class="tnum">86.0%</b></div>
+          <div class="bar"><span>2024</span><div class="track" style="--v:87.3%"></div><b class="tnum">87.3%</b></div>
+          <div class="bar"><span>2025</span><div class="track" style="--v:88.2%"></div><b class="tnum">88.2%</b></div>
+          <div class="bar hl"><span>2026</span><div class="track" style="--v:89.4%"></div><b class="tnum">89.4%</b></div>
+        </div>
+        <div class="axis"><span></span><div><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div><span></span></div>
+      </div>
+      <div class="toppers rv">
+        <h3>2026 school toppers</h3>
+        <ol>
+          <li><span class="avatar" style="width:44px;height:44px;font-size:.9rem">MK</span><div><b>Meera Krishnan</b><small>Grade 12 · Science (PCM)</small></div><span class="pct tnum">98.6%</span></li>
+          <li><span class="avatar" style="width:44px;height:44px;font-size:.9rem;background:var(--lake-soft);color:var(--ink)">AS</span><div><b>Arjun Shetty</b><small>Grade 12 · Commerce</small></div><span class="pct tnum">97.8%</span></li>
+          <li><span class="avatar" style="width:44px;height:44px;font-size:.9rem;background:var(--lake-soft);color:var(--ink)">ZF</span><div><b>Zoya Fatima</b><small>Grade 10</small></div><span class="pct tnum">99.2%</span></li>
+          <li><span class="avatar" style="width:44px;height:44px;font-size:.9rem;background:var(--lake-soft);color:var(--ink)">RN</span><div><b>Rohan Nair</b><small>State-level gold, swimming 100 m</small></div><span class="pct">🥇</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS & EVENTS -->
+<section id="news" class="band">
+  <div class="wrap">
+    <div class="head rv"><span class="eyebrow">News &amp; events</span><h2>What’s happening on campus.</h2></div>
+    <div class="ne">
+      <div>
+        <div class="filters" role="group" aria-label="Filter events">
+          <button aria-pressed="true" data-f="all">All</button>
+          <button aria-pressed="false" data-f="event">Events</button>
+          <button aria-pressed="false" data-f="exam">Exams</button>
+          <button aria-pressed="false" data-f="holiday">Holidays</button>
+        </div>
+        <div class="events" id="events">
+          <div class="ev" data-k="event"><div class="date"><b>14</b><span>Nov</span></div><div><h4>Children’s Day carnival</h4><p>Teachers perform, students run the stalls.</p></div><span class="tag">Event</span></div>
+          <div class="ev" data-k="event"><div class="date"><b>22</b><span>Nov</span></div><div><h4>Inter-house sports meet</h4><p>Track and field finals, 8:00 AM onwards.</p></div><span class="tag">Event</span></div>
+          <div class="ev" data-k="exam"><div class="date"><b>01</b><span>Dec</span></div><div><h4>Half-yearly exams begin</h4><p>Grades 6–12. Timetable in the parent portal.</p></div><span class="tag exam">Exam</span></div>
+          <div class="ev" data-k="event"><div class="date"><b>12</b><span>Dec</span></div><div><h4>Annual Day: “Swan Song”</h4><p>Auditorium, 5:30 PM. Passes from class teachers.</p></div><span class="tag">Event</span></div>
+          <div class="ev" data-k="holiday"><div class="date"><b>24</b><span>Dec</span></div><div><h4>Winter break</h4><p>School reopens on Monday, 4 January.</p></div><span class="tag">Holiday</span></div>
+        </div>
+      </div>
+      <aside class="notice rv">
+        <span class="eyebrow" style="color:var(--marigold)">Notice board</span>
+        <h3 style="margin-top:12px">Circulars for parents</h3>
+        <ul>
+          <li><small>03 NOV 2026</small>Bus route 7 timing changes from 10 November<span class="new">NEW</span></li>
+          <li><small>30 OCT 2026</small>PTM for Grades 1–5 on Saturday, 8 November</li>
+          <li><small>25 OCT 2026</small>Term 2 fee due date: 15 November</li>
+          <li><small>18 OCT 2026</small>Winter uniform from 1 December</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div style="margin-top:64px">
+      <div class="head split rv"><div><span class="eyebrow">Gallery</span><h3 style="font-size:1.6rem;margin-top:12px">Moments from this term</h3></div></div>
+      <div class="gal" id="gal"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="wrap">
+    <div class="head rv"><span class="eyebrow">Parents &amp; alumni</span><h2>In their words.</h2></div>
+    <div class="quotes rv">
+      <div class="qtrack" id="qtrack">
+        <div class="q"><figure><span class="mark">“</span><div><blockquote>My daughter was shy when she joined in UKG. Now she hosts the school assembly. The teachers noticed what she was good at before we did.</blockquote><figcaption><b>Priya Menon</b> · Parent, Grade 4</figcaption></div></figure></div>
+        <div class="q"><figure><span class="mark">“</span><div><blockquote>The career counselling in Grade 11 helped me pick design over engineering. I’m now at NID and I still visit my mentor when I’m home.</blockquote><figcaption><b>Karthik Iyer</b> · Alumnus, Class of 2023</figcaption></div></figure></div>
+        <div class="q"><figure><span class="mark">“</span><div><blockquote>The parent app is brilliant. I see attendance, homework and the bus location in one place, and fee payment takes two minutes.</blockquote><figcaption><b>Imran Sheikh</b> · Parent, Grades 2 and 7</figcaption></div></figure></div>
+      </div>
+      <div class="qnav">
+        <button class="icon-btn" id="qprev" aria-label="Previous testimonial">←</button>
+        <button class="icon-btn" id="qnext" aria-label="Next testimonial">→</button>
+        <div class="qdots" id="qdots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMISSIONS -->
+<section id="admissions" class="band">
+  <div class="wrap">
+    <div class="head split rv">
+      <div><span class="eyebrow">Admissions 2027–28</span><h2 style="margin-top:14px">Joining SwanSchool is simple.</h2></div>
+      <p class="lede">Registration is open for Nursery to Grade 9 and Grade 11. Seats are limited; siblings of current students get priority.</p>
+    </div>
+    <ol class="steps" style="padding:0;margin:0">
+      <li class="rv"><h3>Enquire</h3><p>Fill the form below or visit the admissions office. We call back within one working day.</p></li>
+      <li class="rv"><h3>Visit campus</h3><p>Join a guided Saturday tour and meet the section head.</p></li>
+      <li class="rv"><h3>Interaction</h3><p>A friendly chat for juniors; an aptitude test for Grade 2 and above.</p></li>
+      <li class="rv"><h3>Confirm seat</h3><p>Submit documents and pay the admission fee online.</p></li>
+    </ol>
+
+    <div class="adm">
+      <div class="rv">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Stage</th><th class="n">Annual tuition</th><th class="n">Per term</th></tr></thead>
+            <tbody>
+              <tr><td>Nursery – UKG</td><td class="n">₹ 1,10,000</td><td class="n">₹ 36,700</td></tr>
+              <tr><td>Grades 1 – 5</td><td class="n">₹ 1,35,000</td><td class="n">₹ 45,000</td></tr>
+              <tr><td>Grades 6 – 8</td><td class="n">₹ 1,55,000</td><td class="n">₹ 51,700</td></tr>
+              <tr><td>Grades 9 – 10</td><td class="n">₹ 1,70,000</td><td class="n">₹ 56,700</td></tr>
+              <tr><td>Grades 11 – 12</td><td class="n">₹ 1,85,000</td><td class="n">₹ 61,700</td></tr>
+            </tbody>
+          </table>
+          <p class="fee-note">Sample fees for this demo. Transport and meals are billed separately. 5% sibling concession; merit scholarships available from Grade 6.</p>
+        </div>
+        <div class="table-wrap" style="margin-top:16px">
+          <table>
+            <thead><tr><th>Key date</th><th class="n">2026–27</th></tr></thead>
+            <tbody>
+              <tr><td>Registration opens</td><td class="n">1 Nov</td></tr>
+              <tr><td>Early-bird closes</td><td class="n">15 Dec</td></tr>
+              <tr><td>Interactions</td><td class="n">10 – 24 Jan</td></tr>
+              <tr><td>Offers released</td><td class="n">5 Feb</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <form class="enq rv" id="apply" novalidate>
+        <h3 style="font-size:1.5rem">Admission enquiry</h3>
+        <label for="pname">Parent’s name<input id="pname" name="pname" autocomplete="name" required placeholder="e.g. Kavya Reddy"><span class="err"></span></label>
+        <label for="cname">Child’s name<input id="cname" name="cname" required placeholder="e.g. Aarav"><span class="err"></span></label>
+        <label for="phone">Mobile number<input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" required placeholder="10-digit mobile" pattern="[6-9][0-9]{9}"><span class="err"></span></label>
+        <label for="email">Email<input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"><span class="err"></span></label>
+        <label for="grade">Grade applying for<select id="grade" name="grade" required><option value="">Choose a grade</option><option>Nursery</option><option>LKG</option><option>UKG</option><option>Grade 1</option><option>Grade 2</option><option>Grade 3</option><option>Grade 4</option><option>Grade 5</option><option>Grade 6</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 11 – Science</option><option>Grade 11 – Commerce</option><option>Grade 11 – Humanities</option></select><span class="err"></span></label>
+        <label for="tour">Campus tour<select id="tour" name="tour"><option>Saturday, 8 Nov · 10:00 AM</option><option>Saturday, 15 Nov · 10:00 AM</option><option>Saturday, 22 Nov · 10:00 AM</option><option>No tour, call me</option></select></label>
+        <label class="full" for="msg">Anything we should know? (optional)<textarea id="msg" name="msg" rows="3" placeholder="Transport area, special needs, sibling at school…"></textarea></label>
+        <button class="btn btn-primary full" type="submit" style="justify-content:center">Send enquiry</button>
+        <div class="done" id="done" hidden></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- PORTAL -->
+<section id="portal">
+  <div class="wrap portal">
+    <div class="phone rv" aria-label="Preview of the SwanSchool parent app">
+      <div class="screen">
+        <div class="hello"><div><small>Good evening,</small><br><b style="font-family:var(--f-display);font-size:1.15rem">Aarav’s parent</b></div><span class="chip">Grade 5 B</span></div>
+        <div class="tiles">
+          <div class="tile"><div class="ring" style="--p:94"></div><small>Attendance</small><b class="tnum">94%</b></div>
+          <div class="tile"><small>Term 2 fee</small><b class="tnum">₹45,000</b><small style="color:var(--marigold-ink);background:color-mix(in srgb,var(--marigold) 30%,transparent);display:inline-block;padding:1px 6px;border-radius:5px;margin-top:4px">Due 15 Nov</small></div>
+        </div>
+        <div class="hw"><span><b>Maths</b> · Fractions worksheet 4</span><span class="pill">Submitted</span></div>
+        <div class="hw"><span><b>EVS</b> · Leaf collection project</span><span class="pill due">Due Fri</span></div>
+        <div class="hw"><span><b>Bus 12</b> · 2.4 km away, arriving 3:52 PM</span><span class="pill">Live</span></div>
+      </div>
+    </div>
+    <div class="rv">
+      <span class="eyebrow">Parent portal &amp; app</span>
+      <h2 style="margin:14px 0 16px">Your child’s school day, in your pocket.</h2>
+      <p class="lede">Every SwanSchool family gets the parent app on Android and iOS. One login for all your children.</p>
+      <div class="feat">
+        <div><span class="dot">✓</span><div><b>Attendance alerts</b><p>Notified by 9:30 AM if your child is absent.</p></div></div>
+        <div><span class="dot">₹</span><div><b>Online fees</b><p>UPI, cards and net banking, with instant receipts.</p></div></div>
+        <div><span class="dot">✎</span><div><b>Homework &amp; diary</b><p>Daily tasks, circulars and teacher notes.</p></div></div>
+        <div><span class="dot">◎</span><div><b>Live bus tracking</b><p>See the bus on a map and get a 10-minute alert.</p></div></div>
+        <div><span class="dot">▤</span><div><b>Report cards</b><p>Term results and progress graphs, downloadable.</p></div></div>
+        <div><span class="dot">✆</span><div><b>Message teachers</b><p>Book PTM slots and chat within school hours.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="band">
+  <div class="wrap">
+    <div class="head rv"><span class="eyebrow">Questions parents ask</span><h2>Frequently asked questions.</h2></div>
+    <div class="faq rv">
+      <details open><summary>What is the age criteria for Nursery admission?</summary><p>Children should be 3 years old by 31 May of the admission year. For Grade 1, the child should be 6 years old by 31 May, as per Karnataka guidelines.</p></details>
+      <details><summary>Which documents are needed?</summary><p>Birth certificate, Aadhaar of child and parents, two passport photos, the previous school’s report card and a Transfer Certificate for Grade 2 and above.</p></details>
+      <details><summary>Do you offer transport to my area?</summary><p>Our 42 buses cover most of south and east Bengaluru within a 15 km radius. Share your area in the enquiry form and we will confirm the nearest stop.</p></details>
+      <details><summary>Is there support for children with learning differences?</summary><p>Yes. Our learning support centre has two special educators and an occupational therapist who work with class teachers on individual education plans.</p></details>
+      <details><summary>What are the school timings?</summary><p>Nursery to UKG: 8:30 AM to 12:30 PM. Grades 1 to 12: 8:00 AM to 3:15 PM, Monday to Friday. Saturdays are for clubs, tours and events.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="head rv"><span class="eyebrow">Visit or call us</span><h2>We’d love to show you around.</h2></div>
+    <div class="contact">
+      <div class="ccard rv">
+        <div class="crow"><span class="dot">⌂</span><div><small>Address</small><b id="addr">SwanSchool, 12 Lakeview Road, Sarjapur, Bengaluru 560035</b></div><button class="copy" data-copy="addr">Copy</button></div>
+        <div class="crow"><span class="dot">✆</span><div><small>Admissions office</small><b id="ph" class="tnum">+91 80 4000 1998</b></div><button class="copy" data-copy="ph">Copy</button></div>
+        <div class="crow"><span class="dot">@</span><div><small>Email</small><b id="em">admissions@swanschool.example</b></div><button class="copy" data-copy="em">Copy</button></div>
+        <div class="crow"><span class="dot">◷</span><div><small>Office hours</small><b>Mon–Fri 8:00–4:00 · Sat 9:00–1:00</b></div><span></span></div>
+      </div>
+      <div class="map rv" aria-label="Stylised map of the campus location">
+        <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="600" height="340" fill="var(--mist)"/>
+          <path d="M-10 250C120 200 200 300 330 240S520 160 620 200V350H-10Z" fill="var(--water2)"/>
+          <g stroke="var(--card)" stroke-width="14" fill="none" stroke-linecap="round"><path d="M0 120H600"/><path d="M220 0V340"/><path d="M380 0C380 120 460 160 600 160"/></g>
+          <g stroke="var(--line)" stroke-width="4" fill="none"><path d="M0 60H600M100 0V340M480 0V340"/></g>
+          <rect x="250" y="140" width="110" height="70" rx="10" fill="var(--lake)" opacity=".25"/>
+          <g transform="translate(305 150)"><circle r="30" fill="var(--marigold)" opacity=".3"><animate attributeName="r" values="14;34;14" dur="2.4s" repeatCount="indefinite"/></circle><path d="M0 14C-10 0-14-6-14-12a14 14 0 0 1 28 0c0 6-4 12-14 26z" fill="var(--ink)" transform="translate(0 -18)"/><circle cy="-30" r="5" fill="var(--marigold)"/></g>
+        </svg>
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Sarjapur+Bengaluru" target="_blank" rel="noopener">Open in Google Maps ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="#home" style="color:var(--paper)">SwanSchool</a>
+        <p style="margin-top:12px;max-width:34ch">Co-educational CBSE day school, Nursery to Grade 12. Affiliation No. 830XXXX · School code 4XXXX.</p>
+      </div>
+      <div><h4>School</h4><ul><li><a href="#about">About us</a></li><li><a href="#academics">Academics</a></li><li><a href="#campus">Facilities</a></li><li><a href="#results">Results</a></li></ul></div>
+      <div><h4>Parents</h4><ul><li><a href="#admissions">Admissions</a></li><li><a href="#admissions">Fee structure</a></li><li><a href="#portal">Parent portal</a></li><li><a href="#news">Circulars</a></li></ul></div>
+      <div><h4>Disclosures</h4><ul><li><a href="#contact">CBSE mandatory disclosure</a></li><li><a href="#contact">TC verification</a></li><li><a href="#contact">Careers at SwanSchool</a></li><li><a href="#contact">Child safety policy</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 SwanSchool. Demo website by Swan Digital Solutions.</span><span>All names, figures and fees on this page are sample content.</span></div>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  var d=document, root=d.documentElement; root.classList.add('js');
+  var $=function(s,c){return (c||d).querySelector(s)}, $$=function(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s))};
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Theme toggle
+  try{var t=localStorage.getItem('swan-theme'); if(t) root.setAttribute('data-theme',t);}catch(e){}
+  $('#theme').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')?root.getAttribute('data-theme')==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+    var n=dark?'light':'dark'; root.setAttribute('data-theme',n); try{localStorage.setItem('swan-theme',n)}catch(e){}
+  });
+
+  // Mobile menu
+  var menu=$('#menu'), links=$('#links');
+  menu.addEventListener('click',function(){var o=links.classList.toggle('open');menu.setAttribute('aria-expanded',o)});
+  $$('a',links).forEach(function(a){a.addEventListener('click',function(){links.classList.remove('open');menu.setAttribute('aria-expanded','false')})});
+
+  // Scroll: header border, progress, back-to-top (rAF throttled)
+  var hdr=$('#top'), prog=$('#progress'), tt=$('#totop'), ticking=false;
+  function onScroll(){var y=scrollY,h=d.body.scrollHeight-innerHeight;hdr.classList.toggle('scrolled',y>10);prog.style.transform='scaleX('+(h>0?y/h:0)+')';tt.classList.toggle('show',y>700);ticking=false}
+  addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
+  tt.addEventListener('click',function(){scrollTo({top:0,behavior:reduce?'auto':'smooth'})});
+
+  // Active nav link
+  var secs=$$('main section[id]');
+  if('IntersectionObserver' in window){
+    var nio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){$$('a',links).forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-45% 0px -50% 0px'});
+    secs.forEach(function(s){nio.observe(s)});
+  }
+
+  // Counters
+  function count(el){var to=+el.dataset.count,suf=el.dataset.suffix||'',st=null;if(reduce){el.textContent=to.toLocaleString('en-IN')+suf;return}
+    function step(ts){if(!st)st=ts;var p=Math.min((ts-st)/1600,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(to*e).toLocaleString('en-IN')+suf;if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+  // Set final values first so the page is complete even without JS observers
+  $$('[data-count]').forEach(function(el){el.textContent=(+el.dataset.count).toLocaleString('en-IN')+(el.dataset.suffix||'')});
+
+  // Reveal + one-shot animations
+  if('IntersectionObserver' in window && !reduce){
+    var vh=innerHeight;
+    $$('.rv').forEach(function(el){if(el.getBoundingClientRect().top>vh)el.classList.add('pre')});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;
+      if(el.classList.contains('rv'))el.classList.remove('pre');
+      if(el.id==='stats')$$('[data-count]',el).forEach(count);
+      if(el.id==='day')el.classList.add('go');
+      if(el.id==='bars')el.classList.remove('pre');
+      io.unobserve(el)})},{threshold:.15});
+    $$('.rv').forEach(function(el){io.observe(el)});['#stats','#day','#bars'].forEach(function(s){io.observe($(s))});
+  } else { $('#day').classList.add('go'); $('#bars').classList.remove('pre'); }
+
+  // Tabs
+  var tabs=$$('.tab');
+  function sel(i){tabs.forEach(function(t,j){var on=i===j;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;var p=$('#p-'+j);p.hidden=!on;if(on){p.classList.remove('in');void p.offsetWidth;p.classList.add('in')}})}
+  tabs.forEach(function(t,i){t.addEventListener('click',function(){sel(i)});t.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowLeft'){var n=(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;sel(n);tabs[n].focus()}})});
+  sel(0);
+
+  // Event filters
+  $$('.filters button').forEach(function(b){b.addEventListener('click',function(){var f=b.dataset.f;$$('.filters button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});$$('#events .ev').forEach(function(ev){ev.hidden=!(f==='all'||ev.dataset.k===f)})})});
+
+  // Gallery: illustrated tiles, no image downloads
+  var G=[
+    ['Science fair 2026','tall','#1E7A8C','#7CC4D1','lab'],['Sports day relay','','#E9A23B','#F6D39B','run'],['Library reading week','','#3E5C76','#A7C1D6','book'],
+    ['Annual Day rehearsal','wide','#7B4E8E','#D2B7DE','stage'],['Robotics club','','#2F7D5B','#A6D8BE','bot'],['Art exhibition','tall','#C2573A','#F0B9A6','art'],
+    ['Kannada Rajyotsava','','#D0902A','#F3CF8E','flag'],['Field trip to Lalbagh','wide','#2C6E49','#9FD3A8','tree'],['Swimming gala','','#1D5F8A','#93C5E4','wave']
+  ];
+  var ico={lab:'<path d="M88 40h24M94 40v30l-26 46a10 10 0 0 0 9 15h46a10 10 0 0 0 9-15l-26-46V40"/><path d="M76 104h48"/>',run:'<circle cx="112" cy="46" r="10"/><path d="M104 62l-18 24 16 10-10 32M104 62l20 18 18-6M86 86l-22 4"/>',book:'<path d="M60 56h36a12 12 0 0 1 12 12v66a10 10 0 0 0-10-10H60zM156 56h-36a12 12 0 0 0-12 12v66a10 10 0 0 1 10-10h38z"/>',stage:'<path d="M50 130h120M60 130V60c20 14 30 30 30 70M160 130V60c-20 14-30 30-30 70"/><circle cx="110" cy="96" r="10"/>',bot:'<rect x="74" y="60" width="72" height="56" rx="12"/><circle cx="96" cy="88" r="7"/><circle cx="124" cy="88" r="7"/><path d="M110 60V44M86 130v10M134 130v10"/>',art:'<path d="M110 50a46 46 0 1 0 0 92c8 0 10-8 6-14s0-14 8-14h14a24 24 0 0 0 18-34c-8-18-28-30-46-30z"/><circle cx="90" cy="80" r="6"/><circle cx="112" cy="70" r="6"/><circle cx="132" cy="82" r="6"/>',flag:'<path d="M76 140V48M76 52h66l-12 20 12 20H76"/>',tree:'<path d="M110 140v-36M110 104l-22-10M110 112l20-12"/><circle cx="110" cy="74" r="32"/>',wave:'<path d="M40 100c14-12 28-12 42 0s28 12 42 0 28-12 42 0 28 12 42 0M40 124c14-12 28-12 42 0s28 12 42 0 28-12 42 0 28 12 42 0"/>'};
+  function art(c1,c2,k){return '<svg viewBox="0 0 220 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="g'+k+c1.slice(1)+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+c2+'"/><stop offset="1" stop-color="'+c1+'"/></linearGradient></defs><rect width="220" height="180" fill="url(#g'+k+c1.slice(1)+')"/><circle cx="190" cy="20" r="60" fill="#fff" opacity=".12"/><g fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity=".9">'+ico[k]+'</g></svg>'}
+  var gal=$('#gal');
+  gal.innerHTML=G.map(function(g,i){return '<button class="'+g[1]+'" data-i="'+i+'" aria-label="Open photo: '+g[0]+'">'+art(g[2],g[3],g[4])+'<span>'+g[0]+'</span></button>'}).join('');
+  var lb;
+  gal.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var g=G[+b.dataset.i];
+    lb=d.createElement('div');lb.className='lb';lb.setAttribute('role','dialog');lb.setAttribute('aria-label',g[0]);
+    lb.innerHTML='<button class="x" aria-label="Close">×</button><div class="box">'+art(g[2],g[3],g[4])+'<div class="cap">'+g[0]+'</div></div>';
+    d.body.appendChild(lb);$('.x',lb).focus();
+    function close(){lb.remove();b.focus();d.removeEventListener('keydown',esc)}function esc(ev){if(ev.key==='Escape')close()}
+    lb.addEventListener('click',function(ev){if(ev.target===lb||ev.target.classList.contains('x'))close()});d.addEventListener('keydown',esc)});
+
+  // Testimonials carousel
+  var tr=$('#qtrack'),n=tr.children.length,qi=0,dots=$('#qdots'),timer;
+  for(var i=0;i<n;i++){var b=d.createElement('button');b.setAttribute('aria-label','Testimonial '+(i+1));(function(i){b.addEventListener('click',function(){go(i);reset()})})(i);dots.appendChild(b)}
+  function go(i){qi=(i+n)%n;tr.style.transform='translateX(-'+qi*100+'%)';$$('button',dots).forEach(function(b,j){b.setAttribute('aria-current',j===qi)})}
+  function reset(){clearInterval(timer);if(!reduce)timer=setInterval(function(){go(qi+1)},6500)}
+  $('#qprev').addEventListener('click',function(){go(qi-1);reset()});$('#qnext').addEventListener('click',function(){go(qi+1);reset()});
+  go(0);reset();
+
+  // Enquiry form
+  var f=$('#apply'),done=$('#done');
+  function chk(el){var v=el.value.trim(),m='';
+    if(el.required&&!v)m='Please fill this in.';
+    else if(el.type==='email'&&v&&!/^\S+@\S+\.\S+$/.test(v))m='Enter an email like name@example.com.';
+    else if(el.id==='phone'&&v&&!/^[6-9]\d{9}$/.test(v.replace(/\D/g,'').slice(-10)))m='Enter a 10-digit mobile number.';
+    el.setAttribute('aria-invalid',!!m);var er=el.parentNode.querySelector('.err');if(er)er.textContent=m;return !m}
+  $$('input,select',f).forEach(function(el){el.addEventListener('blur',function(){chk(el)})});
+  f.addEventListener('submit',function(e){e.preventDefault();var ok=true,first;
+    $$('[required]',f).forEach(function(el){if(!chk(el)){ok=false;first=first||el}});
+    if(!ok){first.focus();return}
+    var ref='SWN-'+(2700+Math.floor(Math.random()*900));
+    done.innerHTML='<b>Enquiry recorded · Ref '+ref+'</b><br>Thank you, '+$('#pname').value.trim().split(' ')[0]+'. This is a demo form, so nothing was sent. On the live site the admissions team would call you within one working day about '+$('#cname').value.trim()+' ('+$('#grade').value+').';
+    done.hidden=false;f.querySelector('[type=submit]').textContent='Enquiry recorded ✓'});
+
+  // Copy buttons
+  $$('.copy').forEach(function(b){b.addEventListener('click',function(){var el=$('#'+b.dataset.copy),txt=el.textContent;
+    function sel(){var r=d.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected'}
+    try{navigator.clipboard.writeText(txt).then(function(){b.textContent='Copied'},sel)}catch(e){sel()}
+    setTimeout(function(){b.textContent='Copy'},1800)})});
+
+  onScroll();
+})();
+</script>
+</body>
+</html>
